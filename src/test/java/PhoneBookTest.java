@@ -3,56 +3,36 @@ import org.example.PhoneBook;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-//todo Домашнее задание к занятию 4.5. Коллекции TreeMap и TreeSet  - Пропущенные звонки
-
-public class MainTests {
+public class PhoneBookTest {
     PhoneBook phoneBookTest = new PhoneBook();
     Contact first = new Contact("first", "89");
-    Contact second =  new Contact("second", "89");
-    Contact third =  new Contact("third", "800");
-    Contact fourth = new Contact(null, "95");
-
-    @Test
-    public void testContactEqualsTrueInContact() {
-        Boolean expected = true;
-
-        boolean result = first.equals(second);
-
-        Assertions.assertEquals(expected, result);
-    }
-
-    @Test
-    public void testContactEqualsFalseInContact() {
-        Boolean expected = false;
-
-        boolean result = first.equals(third);
-
-        Assertions.assertEquals(expected, result);
-    }
+    Contact second = new Contact(null, "95");
 
     @Test
     public void testSeachContactNumberInPhonebookNull () {
         phoneBookTest.addPhoneBook(first.getNumberPhone(), first);
+        Contact expected = null;
 
         Contact result = phoneBookTest.seachContactNumber("88");
 
-        Assertions.assertNull(result);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
     public void testSeachContactNumberInPhonebookNotNull () {
         phoneBookTest.addPhoneBook(first.getNumberPhone(), first);
+        Contact expected = first;
 
         Contact result = phoneBookTest.seachContactNumber("89");
 
-        Assertions.assertNotNull(result);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
     public void testInNullInPhonebookNull () {
-        String expected = fourth.getNumberPhone();
+        String expected = second.getNumberPhone();
 
-        String result = phoneBookTest.testInNull(fourth);
+        String result = phoneBookTest.testInNull(second);
 
         Assertions.assertEquals(expected, result);
     }
